@@ -34,6 +34,7 @@ app.post("/api/notes", function(req,res){
     
     //This takes the variable newDB and writes it to the db.json file
     functionsFile.writeToFile("./db/db.json", newDB);
+    res.send(console.log("note added!"))
 });
 //This line of code looks for when a delete request is made to the server with the route of /api/notes.
 //the ":id"  sets a parameter on that rout that will deliver the input after the colon as a parameter in req object.
@@ -59,6 +60,7 @@ app.delete("/api/notes/:id", function(req,res){
     })
 
     functionsFile.writeToFile("./db/db.json", JSON.stringify(newJSON));    
+    res.send(console.log("note deleted!"))
 });
 
 app.post("/api/clear", function(req, res) {
