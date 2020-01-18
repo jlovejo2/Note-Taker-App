@@ -8,7 +8,8 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-//This line of code makes the public folder acessible
+//This line of code makes the entire contents of the public folder acessible when running through the server.
+//Essentiall says if you can find a route for a file go to public folder and look in there
 app.use(express.static("public"));
 
 //Enables CORS for all resoures on my server
