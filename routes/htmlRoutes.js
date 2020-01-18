@@ -3,24 +3,23 @@ const path = require("path");
 
 
 //This line of code exports the  app function so that it can be referenced and used
-module.exports = function (app) {
+module.exports = function (router) {
+
 //The below lines of code handle HTML GET requests
 //in each of the cases the user is shown a an html page content based on urls
-
-app.get("/notes", function(req, res){
+router.get("/notes", function(req, res){
     res.sendFile(path.join(__dirname, "../public/notes.html"))
-    //if they go to this route make them go somewhere else.
-    //res.redirect("index.html")
+
 })
 
 
-app.get("/home", function(req, res){
-    res.sendFile(path.join(__dirname, "../public/"))
+router.get("/home", function(req, res){
+    res.sendFile(path.join(__dirname, "../public/index.html"))
 })
 
 //if no matching route is found default to index.html
-app.get("*", function(req, res){
+router.get("*", function(req, res){
     res.sendFile(path.join(__dirname,"../public/index.html"))
 })
 
-}
+};

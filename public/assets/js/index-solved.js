@@ -119,7 +119,8 @@ var renderNoteList = function (notes) {
     var $li = $("<li class='list-group-item'>").data(note);
     var $span = $("<span>").text(note.title);
     var $delBtn = $(
-      "<i class='fas fa-trash-alt float-right text-danger delete-note'>"
+      `<i class='fas fa-trash-alt float-right text-danger delete-note'>
+      <button type='button' class='btn btn-sm btn-info clear-all-notes'>Clear All</button>`
     );
 
     $li.append($span, $delBtn);
@@ -136,12 +137,21 @@ var getAndRenderNotes = function () {
   });
 };
 
+//Function added to create an ajax call for deleting all generated notes
+const clearAllNotes = function () {
+  return $.ajax({
+    url: "/api/clear",
+    method: "POST"
+  });
+};
+
 $saveNoteBtn.on("click", handleNoteSave);
 $noteList.on("click", ".list-group-item", handleNoteView);
 $newNoteBtn.on("click", handleNewNoteView);
 $noteList.on("click", ".delete-note", handleNoteDelete);
 $noteTitle.on("keyup", handleRenderSaveBtn);
 $noteText.on("keyup", handleRenderSaveBtn);
+$noteList.on("click", ".clear-all-notes", clearAllNotes);
 
 // Gets and renders the initial list of notes
 getAndRenderNotes();

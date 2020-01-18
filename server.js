@@ -1,7 +1,5 @@
 const express = require("express");
 
-
-
 //this line tells the node that we are creating an express server
 const app = express();
 //this line sets an initial port to be used in our listener.  the process.env.PORT is key because it is 
@@ -19,12 +17,12 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
+  
 //______________________________________
 //ROUTER
 //the below lines of code point our server to a series of routing files
 //in these files are lines of code that map out how our server responds when a user visits the app 
 //_____________________________________
-
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
