@@ -1,6 +1,7 @@
 var $noteTitle = $(".note-title");
 var $noteText = $(".note-textarea");
 var $saveNoteBtn = $(".save-note");
+const $clearNoteBtn = $(".clear-all-notes");
 var $newNoteBtn = $(".new-note");
 var $noteList = $(".list-container .list-group");
 
@@ -54,7 +55,6 @@ var handleNoteSave = function () {
   var newNote = {
     title: $noteTitle.val(),
     text: $noteText.val(),
-
   }
 
   saveNote(newNote).then(function (data) {
@@ -100,8 +100,10 @@ var handleNewNoteView = function () {
 var handleRenderSaveBtn = function () {
   if (!$noteTitle.val().trim() || !$noteText.val().trim()) {
     $saveNoteBtn.hide();
+    $clearNoteBtn.hide();
   } else {
     $saveNoteBtn.show();
+    $clearNoteBtn.show();
   }
 };
 

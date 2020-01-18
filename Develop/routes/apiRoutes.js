@@ -21,12 +21,10 @@ app.post("/api/notes", function(req,res){
     let noteJSON = JSON.stringify(functionsFile.getNoteJSON("./db/db.json"));
     //takes the string of data returned from reading the db.json and slices it at the first and last position
     //this is essentially just removing the "[]" from the db.json
-    console.log(noteJSON);
     const currentDB = noteJSON.slice("1","-1");
     let newDB ="";
     let addID = newNote.slice("0","-1") + ', "id": "' + id + '"}'
-    console.log(currentDB);
-
+    
     if(currentDB === "") {
         newDB = "[" + addID + "]";
     } else {
@@ -34,7 +32,6 @@ app.post("/api/notes", function(req,res){
     newDB = "[" + currentDB + "," + addID + "]";
     }
     
-    console.log(newDB);
     //This takes the variable newDB and writes it to the db.json file
     functionsFile.writeToFile("./db/db.json", newDB);
 });
@@ -64,6 +61,14 @@ app.delete("/api/notes/:id", function(req,res){
     functionsFile.writeToFile("./db/db.json", JSON.stringify(newJSON));    
 });
 
+app.post("/api/clear", function(req, res) {
+    // Empty out the arrays of data
+    let apiJSON = [];
+
+    functionsFile.writeToFile("./db/db.json", JSON.stringify(apiJSON));    
+
+    res.json({ ok: true });
+  });
 
 };
 

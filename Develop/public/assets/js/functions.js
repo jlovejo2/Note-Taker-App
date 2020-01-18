@@ -19,8 +19,5 @@ function writeToFile(writeFile, newData) {
     });
 }
 
-
-
-
 module.exports.getNoteJSON = getNoteJSON;
 module.exports.writeToFile = writeToFile;
